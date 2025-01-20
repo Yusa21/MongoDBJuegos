@@ -13,7 +13,7 @@ Es complicado asegurarse de que nunca se rompe la consistencia de datos, es más
 ---
 
 ### c) ¿Cómo solucionarías el problema de la inconsistencia de datos en una base de datos documental? 
-(El hecho de que en los documentos de una colección no sea obligatorio seguir un esquema único)
+### (El hecho de que en los documentos de una colección no sea obligatorio seguir un esquema único)
 
 Teniendo mucho cuidado de la forma en la que se introducen, modifican o se borran los datos de la base de datos.  
 En parte esto también se tiene que cuidar cuando se implementa una base de datos relacional ya que un error inesperado al no respetar el formato también puede romper el programa. 
