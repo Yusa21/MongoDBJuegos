@@ -8,11 +8,17 @@ class ConexionMongo {
     private val connectionString = dotenv["URL_MONGODB"]
     private var mongoClient: MongoClient? = null
 
-    fun connect(): MongoDatabase {
-        if (mongoClient == null) {
-            mongoClient = MongoClients.create(connectionString)
+    fun connect(): MongoDatabase? {
+        try{
+            if (mongoClient == null) {
+                mongoClient = MongoClients.create(connectionString)
+            }
+            return mongoClient!!.getDatabase(dotenv["DATABASE"])
+        }catch(e:Exception){
+            println("Error al conectar a MongoDB: ${e.message}")
+            return null
         }
-        return mongoClient!!.getDatabase(dotenv["DATABASE"])
+
     }
 
     fun close() {

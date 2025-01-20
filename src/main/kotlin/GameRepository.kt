@@ -53,7 +53,12 @@ class GameRepository(private val database: MongoDatabase) {
         collection.deleteMany(Filters.eq("genre", genre))
     }
 
-    fun updateGame(title: String, updatedGame: Game) {
+    fun updateGame(title: String, updatedGame: Game): Boolean {
+        // Comprueba que el titulo no se repita
+        if (collection.find(Filters.eq("title", updatedGame.title)).first() != null) {
+            return false
+        }
+
         collection.updateOne(
             Filters.eq("title", title),
             Updates.combine(
@@ -63,5 +68,6 @@ class GameRepository(private val database: MongoDatabase) {
                 Updates.set("releaseDate", updatedGame.releaseDate)
             )
         )
+        return true
     }
 }
